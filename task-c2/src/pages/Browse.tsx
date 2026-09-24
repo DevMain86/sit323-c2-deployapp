@@ -2,6 +2,7 @@ import { useEffect, useState, useMemo } from "react";
 import { useAuth } from "../context/AuthContext";
 import type { Post } from "../types/post";
 import BrowsePostCard from "../components/BrowsePostCards";
+import { API_URL } from "../config";
 
 function Browse() {
   const { token } = useAuth();
@@ -35,7 +36,7 @@ function Browse() {
       setError("");
 
       try {
-        const response = await fetch("http://localhost:3000/posts", {
+        const response = await fetch(`${API_URL}/posts`, {
           headers: token ? { Authorization: `Bearer ${token}` } : {},
         });
 

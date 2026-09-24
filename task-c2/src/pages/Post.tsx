@@ -2,6 +2,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { useAuth } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
+import { API_URL } from "../config";
 
 function Post() {
   const { user, token } = useAuth();
@@ -76,7 +77,7 @@ function Post() {
         : { type: "article", plan, title, tags, abstract, articleText };
 
     try {
-      const response = await fetch("http://localhost:3000/posts", {
+      const response = await fetch(`${API_URL}/posts`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

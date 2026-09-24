@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { API_URL } from "../config";
 
 function SubscribeBar() {
   const [email, setEmail] = useState("");
@@ -13,7 +14,7 @@ function SubscribeBar() {
 
     try {
       // POST the email to the backend's /subscribe endpoint
-      const response = await fetch("http://localhost:3000/subscribe", {
+      const response = await fetch(`${API_URL}/subscribe`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),

@@ -11,6 +11,8 @@ import { validatePost, normaliseTags } from "./validation/postValidation";
 
 dotenv.config();
 
+console.log("SendGrid key loaded:", process.env.SENDGRID_API_KEY?.slice(0, 7), "length:", process.env.SENDGRID_API_KEY?.length);
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
