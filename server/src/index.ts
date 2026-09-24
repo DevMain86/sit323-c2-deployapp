@@ -3,11 +3,12 @@ import cors from "cors";
 import dotenv from "dotenv";
 import sgMail from "@sendgrid/mail";
 import bcrypt from "bcrypt";
-import { db } from "./firebaseAdmin";
+import { db } from "./firebaseAdmin.js";
 import jwt from "jsonwebtoken";
-import { requireAuth, optionalAuth } from "./middleware/auth";
+import { requireAuth, optionalAuth } from "./middleware/auth.js";
 import { Timestamp } from "firebase-admin/firestore";
-import { validatePost, normaliseTags } from "./validation/postValidation";
+import { validatePost, normaliseTags } from "./validation/postValidation.js";
+import type { QueryDocumentSnapshot } from "firebase-admin/firestore";
 
 dotenv.config();
 
@@ -236,7 +237,7 @@ app.get("/posts", optionalAuth, async (req, res) => {
     const snapshot = await query.get();
 
     // Attach IDs for frontend use
-    const posts = snapshot.docs.map((doc) => ({
+    const posts = snapshot.docs.map((doc: QueryDocumentSnapshot) => ({
       id: doc.id,
       ...doc.data(),
     }));
